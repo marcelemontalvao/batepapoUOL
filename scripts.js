@@ -61,7 +61,7 @@ function getMessages() {
             renderMessages(response)
             scrollIntoView();
             canGetMessages = true;
-        }).catch((error) => {
+        }).catch(() => {
             canGetMessages = true;
         });
     }
@@ -74,10 +74,10 @@ function userOnline() {
             name: user
         }
         let promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', name)
-        promise.then((response) => {
+        promise.then(() => {
             isUserOnline = true;
             console.log('Usuário continua presente');
-        }).catch((error) => {
+        }).catch(() => {
             console.log('Saiu da sala');
             window.location.reload();
         })
@@ -178,15 +178,42 @@ function sendMessage() {
 
 function openActiveParticipants() {
     const btn = document.getElementById('open-modal');
-    console.log(btn);
+    let array = [];
     const modal = document.getElementById("active-participants");
     btn.addEventListener("click", ()=> {
         modal.style.display = 'flex';
     })
 
-    modal.addEventListener("click", (event)=> {
-       console.log(event.target.style.backgroundColor);
+    modal.addEventListener("click", (e)=> {
+        if(e.target.className != 'section') {
+            modal.style.display = 'none';
+        }
     })
+    const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+    promise.then((response)=> {
+        const participants = document.querySelector(".names");
+        const data = response.data;
+        data.forEach(data => {
+            if(!array.includes(data.from)) {
+                array.push(data.from);
+            }
+        }) 
+        array.forEach(nameUser => {
+            participants.innerHTML += `
+                <div class="participant">
+                    <span class='nameuser'><ion-icon name="person-circle"></ion-icon>${nameUser}</span>
+                    <ion-icon name="checkmark"></ion-icon>
+                </div>
+            `            
+        });
+        /*
+        const namesUser = Array.from(document.querySelectorAll(".nameuser"));
+        namesUser.addEventListener("click", ()=> {
+            const pa
+        })*/
+    })
+
+    
 }
 
 getMessagesInterval = setInterval(getMessages, 3000);

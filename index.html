@@ -20,7 +20,10 @@
         </main>
         <footer>
             <form id="form-message">
-                <input type="text" placeholder="Escreva aqui..." id="input" autofocus>
+                <div class="message-private">
+                     <input type="text" placeholder="Escreva aqui..." id="input" autofocus>
+                    <span>Enviando para Maria (reservadamente)</span>
+                </div>
                 <button type="submit" id="sendMessage"><ion-icon name="paper-plane-outline" id="btn-send" ></ion-icon></button>
             </form> 
         </footer>
@@ -33,9 +36,9 @@
         </form>
     </div>
     <div class="container-active-participants" id="active-participants">
-        <section>
+        <section class="section">
             <span class="choose-participant">Escolha um contato para enviar mensagem:</span>
-            <div class="participants">
+            <div class="participants names">
                 <div class="participant">
                     <span><ion-icon name="people"></ion-icon>Todos</span>
                     <ion-icon name="checkmark"></ion-icon>

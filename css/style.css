@@ -238,7 +238,7 @@ form > #sendMessage ion-icon {
     justify-content: center;
     gap: 150px;
     background: rgba(0, 0, 0, 0.6);
-    height: auto;
+    height: 100vh;
     width: 100%;
     top: 0;
     position: fixed;
@@ -248,7 +248,7 @@ form > #sendMessage ion-icon {
 
 .container-active-participants section {
     width: 60%;
-    height: 100vh;
+    height: auto;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -257,6 +257,7 @@ form > #sendMessage ion-icon {
     gap: 15px;
     background-color: #FFFFFF;
     z-index: 1;
+    top: 0;
 }
 
 .container-active-participants section .choose-participant {
@@ -284,8 +285,7 @@ form > #sendMessage ion-icon {
     padding-right: 20px;
 }
 
-.container-active-participants .participant > ion-icon {
-    /*color: #28BB25;*/
+.container-active-participants .participant > ion-icon  {
     color: transparent;
 }
 
@@ -299,4 +299,13 @@ form > #sendMessage ion-icon {
     display: flex;
     gap: 5px;
     font-size: 25px;
+}
+
+.active {
+    color: #28BB25;
+}
+
+.container-active-participants .participants:last-child {
+    background-color: red;
+    margin-bottom: 50px;
 }

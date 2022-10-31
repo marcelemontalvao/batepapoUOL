@@ -180,42 +180,56 @@ function openActiveParticipants() {
     const btn = document.getElementById('open-modal');
     let array = [];
     const modal = document.getElementById("active-participants");
+    
     btn.addEventListener("click", ()=> {
         modal.style.display = 'flex';
-    })
+    });
 
     modal.addEventListener("click", (e)=> {
-        if(e.target.className != 'section') {
+        if(e.target.className == 'container-active-participants') {
             modal.style.display = 'none';
         }
-    })
+    });
+
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then((response)=> {
         const participants = document.querySelector(".names");
         const data = response.data;
+        
         data.forEach(data => {
             if(!array.includes(data.from)) {
                 array.push(data.from);
             }
-        }) 
+        });
+
         array.forEach(nameUser => {
             participants.innerHTML += `
-                <div class="participant">
-                    <span class='nameuser'><ion-icon name="person-circle"></ion-icon>${nameUser}</span>
-                    <ion-icon name="checkmark"></ion-icon>
+                <div class="participant nameuser">
+                    <span><ion-icon name="person-circle"></ion-icon>${nameUser}</span>
+                    <ion-icon name="checkmark" class='check'></ion-icon>
                 </div>
             `            
         });
-        /*
-        const namesUser = Array.from(document.querySelectorAll(".nameuser"));
-        namesUser.addEventListener("click", ()=> {
-            const pa
-        })*/
-    })
+    });
 
-    
+    const namesUser = Array.from(document.querySelectorAll(".nameuser"));
+    namesUser.forEach(nameUser => {
+        const ion = nameUser.querySelector('.check')
+        if(ion.classList.contains("active")) {
+            ion.classList.remove(".active");
+        }
+        nameUser.addEventListener("click", ()=> {
+            const ion = nameUser.querySelector('.check');
+            ion.classList.toggle(".active");
+        });
+    });
 }
 
-getMessagesInterval = setInterval(getMessages, 3000);
+
+const modal = document.getElementById("active-participants");
+while(modal.style.display == 'none') {
+    getMessagesInterval = setInterval(getMessages, 3000);
+}
+getMessages();
 sendMessage();
 openActiveParticipants();

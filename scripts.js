@@ -211,9 +211,14 @@ function openActiveParticipants() {
             `            
         });
     });
+}
 
-    const namesUser = Array.from(document.querySelectorAll(".nameuser"));
+function selectUser() {
+    const namesUser = document.querySelectorAll(".nameuser")
+    console.log(namesUser);
+
     namesUser.forEach(nameUser => {
+        console.log(nameUser);
         const ion = nameUser.querySelector('.check')
         if(ion.classList.contains("active")) {
             ion.classList.remove(".active");
@@ -225,7 +230,6 @@ function openActiveParticipants() {
     });
 }
 
-
 const modal = document.getElementById("active-participants");
 while(modal.style.display == 'none') {
     getMessagesInterval = setInterval(getMessages, 3000);
@@ -233,3 +237,4 @@ while(modal.style.display == 'none') {
 getMessages();
 sendMessage();
 openActiveParticipants();
+selectUser();

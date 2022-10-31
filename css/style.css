@@ -85,7 +85,7 @@ main {
 }
 
 .private {
-    background-color: #FFDEDE;
+    background-color: #ab8e8e;
     height: 63px;
 }
 
@@ -108,14 +108,34 @@ footer input::placeholder {
     font-size: 18px;
     font-style: italic;
     font-weight: 500;
-    padding-left: 15px;
     color: #000000;
 }
 
-footer > ion-icon {
+#form-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#input {
+    width: 90%;
+    padding-left: 25px;
+}
+
+form > #sendMessage {
+    border: none;
+    background-color: transparent;
     font-size: 40px;
-    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     padding-right: 34px;
+}
+
+form > #sendMessage ion-icon {
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.span-alert {
+    color: red;
 }
 
 .tela-entrada {
@@ -169,3 +189,25 @@ footer > ion-icon {
     color: #696969;
     font-size: 18px;
 }
+
+.divSpinner {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.spinner {
+    animation: spinner 1.5s infinite;
+}
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

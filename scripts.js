@@ -176,5 +176,19 @@ function sendMessage() {
     })
 }
 
+function openActiveParticipants() {
+    const btn = document.getElementById('open-modal');
+    console.log(btn);
+    const modal = document.getElementById("active-participants");
+    btn.addEventListener("click", ()=> {
+        modal.style.display = 'flex';
+    })
+
+    modal.addEventListener("click", (event)=> {
+       console.log(event.target.style.backgroundColor);
+    })
+}
+
 getMessagesInterval = setInterval(getMessages, 3000);
 sendMessage();
+openActiveParticipants();

@@ -110,11 +110,10 @@ function renderMessages(response) {
 
         if(element.type == 'status') {
             li.classList.add('status');
-
             divInfo.append(spanTime, spanPerson, spanText);
             li.append(divInfo);
             ul.append(li);
-        } else if (element.type == 'private' && (element.to == user)) {
+        } else if (element.type == 'private_message' && (element.to == user)) {
             li.classList.add('private');
             const spanTo = document.createElement('span')
             spanTo.classList.add('to');
@@ -143,13 +142,22 @@ function scrollIntoView() {
 }
 
 function sendMessage() {
-    const btn = document.getElementById('btn-send');
     const form = document.querySelector("footer form");
     const input = document.getElementById('input');
-    form.addEventListener("keyup", (e)=> { 
+    form.addEventListener("submit", (e)=> { 
         e.preventDefault();
-        const key = (e.which || e.keyCode);
-        if(key == 13) {
+        if(input.value) {
+            const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message);
+            promise.catch(()=> {
+                window.location.reload();
+            }) 
+            input.value = '';
+        }
+    })
+
+    input.addEventListener('keydown', (e)=> {
+        const key = e.code;
+        if(key == 'Enter') {
             const message = {
                 from: user,
                 to: 'Todos',
@@ -159,23 +167,12 @@ function sendMessage() {
         
             if(input.value) {
                 const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message);
-                promise.then(()=> { 
-                    input.value = '';
-                });
-               
+                promise.catch(()=> {
+                    window.location.reload();
+                }) 
+                input.value = '';
             }
-            
-            btn.addEventListener('click', () => {  
-                if(input.value) {
-                    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message);
-                    promise.then(()=> {
-                        input.value = '';
-                    }); 
-                    
-                }
-            });
         }
-      
     })
 }
 

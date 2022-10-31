@@ -61,7 +61,7 @@ function getMessages() {
             renderMessages(response)
             scrollIntoView();
             canGetMessages = true;
-        }).catch((error) => {
+        }).catch(() => {
             canGetMessages = true;
         });
     }
@@ -74,10 +74,10 @@ function userOnline() {
             name: user
         }
         let promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', name)
-        promise.then((response) => {
+        promise.then(() => {
             isUserOnline = true;
             console.log('Usuário continua presente');
-        }).catch((error) => {
+        }).catch(() => {
             console.log('Saiu da sala');
             window.location.reload();
         })
@@ -176,5 +176,72 @@ function sendMessage() {
     })
 }
 
+function openActiveParticipants() {
+    const btn = document.getElementById('open-modal');
+    let array = [];
+    const modal = document.getElementById("active-participants");
+    
+    btn.addEventListener("click", ()=> {
+        modal.style.display = 'flex';
+    });
+
+    modal.addEventListener("click", (e)=> {
+        if(e.target.className == 'container-active-participants') {
+            modal.style.display = 'none';
+        }
+    });
+
+    const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+    setInterval(()=> {
+            promise.then((response)=> {
+            const participants = document.querySelector(".names");
+            const data = response.data;
+            
+            data.forEach(data => {
+                if(!array.includes(data.from)) {
+                    array.push(data.from);
+                }
+            });
+            participants.innerHTML = '';
+            participants.innerHTML += `
+                <div class="participant nameuser">
+                    <span ><ion-icon name="people"></ion-icon>Todos</span>
+                    <ion-icon name="checkmark"></ion-icon>
+                </div>
+            ` ;
+
+            array.forEach(nameUser => {
+                
+                participants.innerHTML += `
+                    <div class="participant nameuser">
+                        <span><ion-icon name="person-circle"></ion-icon>${nameUser}</span>
+                        <ion-icon name="checkmark" class='check'></ion-icon>
+                    </div>
+                `            
+            });
+        });
+    }, 10000);
+}
+/*
+function selectUser() {
+    const namesUser = document.querySelectorAll(".nameuser")
+    console.log(namesUser);
+
+    namesUser.forEach(nameUser => {
+        console.log(nameUser);
+        const ion = nameUser.querySelector('.check')
+        if(ion.classList.contains("active")) {
+            ion.classList.remove(".active");
+        }
+        nameUser.addEventListener("click", ()=> {
+            const ion = nameUser.querySelector('.check');
+            ion.classList.toggle(".active");
+        });
+    });
+}
+*/
 getMessagesInterval = setInterval(getMessages, 3000);
+getMessages();
 sendMessage();
+openActiveParticipants();
+//selectUser();

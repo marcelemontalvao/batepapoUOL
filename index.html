@@ -12,7 +12,7 @@
     <div class="container" id="container">
         <header>
             <img src="./assets/logo.png" alt="Logo Bate Papo UOL">
-            <ion-icon name="people"></ion-icon>
+            <ion-icon name="people" id="open-modal"></ion-icon>
         </header>
         <main>
             <ul class="cards">
@@ -20,18 +20,42 @@
         </main>
         <footer>
             <form id="form-message">
-                <input type="text" placeholder="Escreva aqui..." id="input" autofocus>
+                <div class="message-private">
+                    <input type="text" placeholder="Escreva aqui..." id="input" autofocus>
+                    <!--<span>Enviando para Maria (reservadamente)</span>-->
+                </div>
                 <button type="submit" id="sendMessage"><ion-icon name="paper-plane-outline" id="btn-send" ></ion-icon></button>
             </form> 
         </footer>
-        
     </div>
-    <div class="tela-entrada" id="enterIn">
+    <div class="enter-in" id="enterIn">
         <img src="./assets/logo-2.png" alt="">
         <form id="form">
             <input type="text" placeholder="Digite seu nome" id="input-user" autofocus>
             <button type="submit" id="btn-in">Entrar</button>
         </form>
+    </div>
+    <div class="container-active-participants" id="active-participants">
+        <section class="section">
+            <span class="choose-participant">Escolha um contato para enviar mensagem:</span>
+            <div class="participants names">
+                <div class="participant nameuser">
+                    <span ><ion-icon name="people"></ion-icon>Todos</span>
+                    <ion-icon name="checkmark"></ion-icon>
+                </div>
+            </div>
+            <span class="choose-participant">Escolha a visibilidade:</span>
+            <div class="participants">
+                <div class="participant">
+                    <span><ion-icon name="lock-open"></ion-icon>Público</span>
+                    <ion-icon name="checkmark"></ion-icon>
+                </div>
+                <div class="participant">
+                    <span><ion-icon name="lock-closed"></ion-icon>Reservadamente</span>
+                    <ion-icon name="checkmark"></ion-icon>
+                </div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

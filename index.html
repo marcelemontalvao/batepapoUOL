@@ -22,7 +22,6 @@
             <form id="form-message">
                 <div class="message-private">
                     <input type="text" placeholder="Escreva aqui..." id="input" autofocus>
-                    <!--<span>Enviando para Maria (reservadamente)</span>-->
                 </div>
                 <button type="submit" id="sendMessage"><ion-icon name="paper-plane-outline" id="btn-send" ></ion-icon></button>
             </form> 
@@ -31,8 +30,8 @@
     <div class="enter-in" id="enterIn">
         <img src="./assets/logo-2.png" alt="">
         <form id="form">
-            <input type="text" placeholder="Digite seu nome" id="input-user" autofocus>
-            <button type="submit" id="btn-in">Entrar</button>
+            <input type="text" placeholder="Digite seu nome" id="input-user" data-identifier="enter-name" autofocus>
+            <button type="submit" id="btn-in" data-identifier="start">Entrar</button>
         </form>
     </div>
     <div class="container-active-participants" id="active-participants">

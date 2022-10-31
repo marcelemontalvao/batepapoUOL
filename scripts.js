@@ -204,18 +204,18 @@ function openActiveParticipants() {
             });
             participants.innerHTML = '';
             participants.innerHTML += `
-                <div class="participant nameuser">
+                <div class="participant nameuser" data-identifier="participant">
                     <span ><ion-icon name="people"></ion-icon>Todos</span>
-                    <ion-icon name="checkmark"></ion-icon>
+                    <ion-icon name="checkmark"  class='check data-identifier="visibility"></ion-icon>
                 </div>
             ` ;
 
             array.forEach(nameUser => {
                 
                 participants.innerHTML += `
-                    <div class="participant nameuser">
+                    <div class="participant nameuser" data-identifier="participant">
                         <span><ion-icon name="person-circle"></ion-icon>${nameUser}</span>
-                        <ion-icon name="checkmark" class='check'></ion-icon>
+                        <ion-icon name="checkmark" class='check' data-identifier="visibility"></ion-icon>
                     </div>
                 `            
             });

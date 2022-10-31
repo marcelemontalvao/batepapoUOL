@@ -219,17 +219,18 @@ function openActiveParticipants() {
                     </div>
                 `            
             });
+
+            selectUser();
         });
     }, 10000);
 }
-/*
-function selectUser() {
-    const namesUser = document.querySelectorAll(".nameuser")
-    console.log(namesUser);
 
+function selectUser() {
+    const namesUser = Array.from(document.querySelectorAll(".nameuser"));
+    console.log(namesUser);
     namesUser.forEach(nameUser => {
-        console.log(nameUser);
-        const ion = nameUser.querySelector('.check')
+        const ion = nameUser.querySelectorAll('ion-icon');
+        console.log(ion);
         if(ion.classList.contains("active")) {
             ion.classList.remove(".active");
         }
@@ -239,9 +240,8 @@ function selectUser() {
         });
     });
 }
-*/
+
 getMessagesInterval = setInterval(getMessages, 3000);
 getMessages();
 sendMessage();
 openActiveParticipants();
-//selectUser();

@@ -110,7 +110,7 @@ footer {
 
 footer input {
     height: 50px;
-    width: 350px;
+    width: 120%;
     border: none;
 }
 
@@ -129,7 +129,6 @@ footer input::placeholder {
 }
 
 #input {
-    width: 90%;
     padding-left: 25px;
 }
 

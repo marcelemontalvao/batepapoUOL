@@ -92,6 +92,7 @@ function renderMessages(response) {
     data.forEach(element => { 
         const li = document.createElement("li");
         li.classList.add("card");
+        li.setAttribute('data-test', "message")
 
         const divInfo = document.createElement('div');
         divInfo.classList.add('info');
@@ -206,7 +207,7 @@ function openActiveParticipants() {
             participants.innerHTML += `
                 <div class="participant nameuser" data-identifier="participant">
                     <span ><ion-icon name="people"></ion-icon>Todos</span>
-                    <ion-icon name="checkmark"  class='check data-identifier="visibility"></ion-icon>
+                    <ion-icon name="checkmark" class='check data-identifier="visibility"></ion-icon>
                 </div>
             ` ;
 

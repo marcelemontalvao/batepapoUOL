@@ -12,7 +12,7 @@
     <div class="container" id="container">
         <header>
             <img src="./assets/logo.png" alt="Logo Bate Papo UOL">
-            <ion-icon name="people" id="open-modal"></ion-icon>
+            <ion-icon name="people" id="open-modal" data-test="open-participants"></ion-icon>
         </header>
         <main>
             <ul class="cards">
@@ -21,9 +21,9 @@
         <footer>
             <form id="form-message">
                 <div class="message-private">
-                    <input type="text" placeholder="Escreva aqui..." id="input" autofocus>
+                    <input type="text" placeholder="Escreva aqui..." id="input" data-test="input-message" autofocus>
                 </div>
-                <button type="submit" id="sendMessage"><ion-icon name="paper-plane-outline" id="btn-send" ></ion-icon></button>
+                <button type="submit" id="sendMessage"><ion-icon name="paper-plane-outline" id="btn-send" data-test="send-message"></ion-icon></button>
             </form> 
         </footer>
     </div>
@@ -39,7 +39,7 @@
             <span class="choose-participant">Escolha um contato para enviar mensagem:</span>
             <div class="participants names">
                 <div class="participant nameuser">
-                    <span ><ion-icon name="people"></ion-icon>Todos</span>
+                    <span><ion-icon name="people"></ion-icon>Todos</span>
                     <ion-icon name="checkmark"></ion-icon>
                 </div>
             </div>
